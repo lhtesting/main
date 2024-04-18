@@ -1,8 +1,8 @@
 local Config = {}
 
-Config.KeysEnabled = true
+Config.KeysEnabled = false
 
-Config.Keys = {"AmongUsSussyKeyTeset"}
+Config.Keys = {}
 
 Config.Universal = {Enabled = false,link="https://raw.githubusercontent.com/"}
 
