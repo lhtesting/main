@@ -41,7 +41,9 @@ if game.GameId == 4791585001 then
 		local ReturnRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Teleport"):WaitForChild("Return")
 		local ReplayRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Teleport"):WaitForChild("Replay")
 		---- QUEUE ON TELEPORT ----
-		queue_on_teleport(game:HttpGet('https://raw.githubusercontent.com/lhtesting/main/main/lafhel.lua'))
+		coroutine.wrap(function()
+			queue_on_teleport(game:HttpGet('https://raw.githubusercontent.com/lhtesting/main/main/lafhel.lua'))
+		end)()
 		---- ANTI-TELEPORT BYPASS ----
 		local lastCF
 		local function TeleportBypass()
