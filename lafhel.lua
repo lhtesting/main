@@ -41,9 +41,7 @@ if game.GameId == 4791585001 then
 		local ReturnRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Teleport"):WaitForChild("Return")
 		local ReplayRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("Teleport"):WaitForChild("Replay")
 		---- QUEUE ON TELEPORT ----
-		coroutine.wrap(function()
-			queue_on_teleport(game:HttpGet('https://raw.githubusercontent.com/lhtesting/main/main/lafhel.lua'))
-		end)()
+		queue_on_teleport(game:HttpGet('https://raw.githubusercontent.com/lhtesting/main/main/lafhel.lua'))
 		---- ANTI-TELEPORT BYPASS ----
 		local lastCF
 		local function TeleportBypass()
@@ -132,15 +130,6 @@ if game.GameId == 4791585001 then
 			until CharacterLoaded == true
 			CustomPrintEditMsg(msg,"2/2 | START COMPLETED",Color3.fromRGB(79, 255, 123))
 		end
-
-		repeat task.wait() until Player.Character
-		repeat task.wait() until Player.Character:FindFirstChildOfClass("Humanoid")
-		Player.Character:FindFirstChildOfClass("Humanoid").Died:Connect(function()
-			CustomPrint("Player Died - REJOINING")
-			task.wait(4)
-			task.wait(1)
-			ReplayRemote:FireServer()
-		end)
 		---- COMPLETE OBJECTIVES ----
 		local function completeObjectives()
 			local objMsg = CustomPrint(`{0}/{#objectiveList} COMPLETEING OBJECTIVES`,Color3.fromRGB(82,166,255),true)
@@ -256,6 +245,14 @@ if game.GameId == 4791585001 then
 		CustomPrintEditMsg(_fristMsg,"[########] LOADED SUCCESSFULLY",Color3.fromRGB(79, 255, 123))
 		if not Player.Character then readyUp_Skip() end
 		task.spawn(IntimidateSpam)
+		repeat task.wait() until Player.Character
+		repeat task.wait() until Player.Character:FindFirstChildOfClass("Humanoid")
+		Player.Character:FindFirstChildOfClass("Humanoid").Died:Connect(function()
+			CustomPrint("Player Died - REJOINING")
+			task.wait(4)
+			task.wait(1)
+			ReplayRemote:FireServer()
+		end)
 		if config.AutoFarm.LockpickDoors == true then lockpickDoors() end
 		if config.AutoFarm.ZiptieNpcs == true then ziptieNPCs() end
 		---- FINISH & WAIT FOR SCORE ----
