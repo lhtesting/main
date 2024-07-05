@@ -141,7 +141,9 @@ if game.GameId == 5849979605 then
 				while task.wait() do
 					if KillPlayers == false then task.wait() continue end
 					for i=1,100 do
-						DamagePlayers()
+						for i=1,100 do
+							DamagePlayers()
+						end
 					end
 				end
 			end)
