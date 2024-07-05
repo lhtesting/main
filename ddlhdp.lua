@@ -63,6 +63,7 @@ if game.GameId == 5849979605 then
 	local GunList = {"AR14_Brainwasher","SG19_Punisher","SG16_Judgment","RL-4_Gifter","MR-1_Messiah","MG99_Liberator","BW84_Endragon","AR26_Unslave","AR14_Brainwasher"}
 	if CurrentMap ~= "LOBBY" then
 		workspace:WaitForChild("Enemies")
+		Statistic_TEK.Text = "Total Enemies Killed: ERR"
 		local TotalEnemiesSpawned,CurrentSpawned,Killed = 0,0,0
 		for _,enemy in workspace.Enemies:GetChildren() do
 			TotalEnemiesSpawned += 1
@@ -103,7 +104,7 @@ if game.GameId == 5849979605 then
 				for _,Enemy in workspace.Enemies:GetChildren() do
 					local Humanoid = Enemy:FindFirstChildOfClass("Humanoid")
 					if not Humanoid or Humanoid.Health < 1 then continue end
-					ReplicatedStorage.Remotes.HitTarget:InvokeServer(Humanoid,10000000,Enemy,EquipedGun)
+					ReplicatedStorage.Remotes.HitTarget:InvokeServer(Humanoid,nil,Enemy,"P15_Freedom_One",10000000)
 					if Humanoid.Health < 1 then
 						Killed += 1
 						Statistic_TEK.Text = "Total Enemies Killed: "..tostring(Killed)
@@ -115,7 +116,7 @@ if game.GameId == 5849979605 then
 					if not Player.Character then continue end
 					local Humanoid = Player.Character:FindFirstChildOfClass("Humanoid")
 					if not Humanoid or Humanoid.Health < 1 then continue end
-					ReplicatedStorage.Remotes.HitTarget:InvokeServer(Humanoid,10000000,Player.Character,EquipedGun)
+					ReplicatedStorage.Remotes.HitTarget:InvokeServer(Humanoid,nil,Player.Character,"P15_Freedom_One",10000000)
 				end
 			end
 			Tab:AddLabel('EXPLOITS')
@@ -133,9 +134,7 @@ if game.GameId == 5849979605 then
 			task.spawn(function()
 				while task.wait() do
 					if KillAll == false then task.wait() continue end
-					for i=1,100 do
-						KillAllEnemies()
-					end
+					KillAllEnemies()
 				end
 			end)
 			task.spawn(function()
@@ -150,6 +149,9 @@ if game.GameId == 5849979605 then
 			Tab:AddLabel("WE COULDN'T DETECT THE FIREARM YOU ARE USING, PLEASE SWITCH TO A DIFFERENT PRIMARY")
 		end
 	else
+		Tab:AddLabel("PLEASE READ")
+		Tab:AddLabel("EQUIP THE: P15 Freedom One")
+		Tab:AddLabel(" ")
 		Tab:AddLabel("JOIN A MATCH TO USE EXPLOITS")
 	end
 	Tab:AddLabel(' ')
