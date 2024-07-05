@@ -1,6 +1,9 @@
 if game.GameId == 5849979605 then
+	repeat task.wait() until game:IsLoaded()
+	repeat task.wait() until game:GetService("Players").LocalPlayer:GetMouse()
 	local Players = game:GetService("Players")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 	local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/obeseinsect/roblox/main/Ui%20Libraries/Elerium.lua"))()
 
 	local Window = Library:AddWindow('LH_DEV // DARKDIVERS',{
@@ -101,8 +104,10 @@ if game.GameId == 5849979605 then
 					local Humanoid = Enemy:FindFirstChildOfClass("Humanoid")
 					if not Humanoid or Humanoid.Health < 1 then continue end
 					ReplicatedStorage.Remotes.HitTarget:InvokeServer(Humanoid,10000000,Enemy,EquipedGun)
-					Killed += 1
-					Statistic_TEK.Text = "Total Enemies Killed: "..tostring(Killed)
+					if Humanoid.Health < 1 then
+						Killed += 1
+						Statistic_TEK.Text = "Total Enemies Killed: "..tostring(Killed)
+					end
 				end
 			end
 			local function DamagePlayers()
@@ -119,7 +124,6 @@ if game.GameId == 5849979605 then
 				warn("The 'Beat Match' Feature is still a WORK IN PROGRESS, please wait for future updates!")
 				warn(" ")
 			end)
-			Tab:AddButton("Kill All Spawned Enemies",KillAllEnemies)
 			Tab:AddSwitch("Auto Kill All Enemies",function(bool)
 				KillAll = bool
 			end)
@@ -129,7 +133,9 @@ if game.GameId == 5849979605 then
 			task.spawn(function()
 				while task.wait() do
 					if KillAll == false then task.wait() continue end
-					KillAllEnemies()
+					for i=1,100 do
+						KillAllEnemies()
+					end
 				end
 			end)
 			task.spawn(function()
@@ -147,5 +153,5 @@ if game.GameId == 5849979605 then
 		Tab:AddLabel("JOIN A MATCH TO USE EXPLOITS")
 	end
 	Tab:AddLabel(' ')
-    queue_on_teleport(game:HttpGet("https://raw.githubusercontent.com/lhtesting/main/main/ddlhdp.lua"))
+	queue_on_teleport(game:HttpGet("https://raw.githubusercontent.com/lhtesting/main/main/ddlhdp.lua"))
 end
