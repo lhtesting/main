@@ -1,3 +1,4 @@
+
 repeat task.wait() until game:IsLoaded()
 task.wait(3)
 local Button1 = workspace.MapFolder.Obby_FloodedCaves.Button1.TouchPart
