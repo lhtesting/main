@@ -1,7 +1,6 @@
 ----------------------------
 ----  LOOKIN' HACKABLE  ----
 ----------------------------
-
 ---------------------
 ----  VARIABLES  ----
 ---------------------
@@ -342,11 +341,9 @@ for i=1,#MainNodeTree do
 	fireproximityprompt(MainNodeTree[i].Prompt,0)
 end
 CustomPrintEditMsg(nodemsg,`{#MainNodeTree+1}/{#MainNodeTree+1} | PATH COMPLETED`,Color3.fromRGB(79, 255, 123))
-local completeMsg = CustomPrintEditMsg("WAITING FOR COMPLETION",Color3.fromRGB(255, 196, 94),true)
+local completeMsg = CustomPrint("WAITING FOR COMPLETION",Color3.fromRGB(255, 196, 94),true)
 Player.PlayerGui:WaitForChild("MissionComplete")
 CustomPrintEditMsg(completeMsg,"WAITING FOR COMPLETION",Color3.fromRGB(79, 255, 123))
 CustomPrint("RESTARTING MATCH",Color3.fromRGB(82,166,255))
-task.wait(1)
-queue_on_teleport(game:HttpGet("https://raw.githubusercontent.com/lhtesting/main/main/testafhel.lua"))
 task.wait(1)
 game:GetService("ReplicatedStorage").Remotes.Teleport.Replay:InvokeServer()
